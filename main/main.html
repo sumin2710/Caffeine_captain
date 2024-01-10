@@ -4,70 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>모아봐 시네마</title>
-    <style>
-      header {
-        height: 200px;
-        background-color: red;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-      }
 
-      footer {
-        height: 100px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        background-color: aqua;
-      }
-      .container {
-        display: grid;
-        height: 900px;
-        background-color: beige;
-
-        padding: 20px;
-
-        grid-template-columns: 10% 20% 1fr;
-        grid-template-rows: 50px 1fr 200px;
-        grid-gap: 20px;
-
-        grid-template-areas:
-          "none sort search"
-          "category main main";
-      }
-
-      .container > div {
-        border: solid 2px blue;
-      }
-
-      .sort {
-        grid-area: sort;
-      }
-      .search {
-        grid-area: search;
-      }
-      .category {
-        grid-area: category;
-      }
-      .main {
-        grid-area: main;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-evenly;
-      }
-
-      .card {
-        margin: 20px;
-        width: 300px;
-        height: 400px;
-        border: solid 1px blue;
-      }
-    </style>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./main.css" />
+    <script type="module" src="./main.js"></script>
   </head>
+
   <body>
     <!-- 헤더 -->
-    <header>모아봐 시네마</header>
+    <header>
+      <h1>모아봐 시네마</h1>
+    </header>
 
     <!-- 메인창 -->
     <form>
@@ -75,17 +22,12 @@
         <div class="sort">정렬</div>
         <div class="search">
           <input type="text" />
-          <button class="searchButton">검색버튼</button>
+          <button class="searchButton">검색</button>
         </div>
 
         <div class="category">카테고리</div>
         <div class="main">
-          <div class="card">카드</div>
-          <div class="card">카드</div>
-          <div class="card">카드</div>
-          <div class="card">카드</div>
-          <div class="card">카드</div>
-          <div class="card">카드</div>
+          <div id="card" class="card" onclick="location.href='detail.html'"></div>
         </div>
       </div>
     </form>
