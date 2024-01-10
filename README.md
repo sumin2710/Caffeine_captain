@@ -1,7 +1,8 @@
-## This is for searching movie from TMDB.
+## 카페인캡틴(10조)의 TMDB 영화 사이트
 
-### how to use it
+### 사용방법
 
 
-1. You should get your own api key and auth by signing up and request API from https://www.themoviedb.org/signup?language=ko.
-2. Fill apiKey_sample.js file with your own and change its name to apiKey.js .
+1. 본인의 API Authorization과 key를 apiKey_sample.js 파일에 넣어주세요.
+2. apiKey_sample.js 이름을 apiKey.js 로 변경하세요.
+3. 끝!
