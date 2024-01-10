@@ -1,11 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모여봐시네마</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>모여봐시네마 상세페이지</title>
+    <style>
+      header {
+        height: 200px;
+        background-color: red;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+
+      footer {
+        height: 100px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        background-color: aqua;
+      }
+      .container {
+        display: grid;
+        height: 900px;
+        background-color: beige;
+
+        padding: 20px;
+
+        grid-template-columns: 30% 1fr;
+        grid-template-rows: 600px 1fr;
+        grid-gap: 20px;
+      }
+
+      .container > div {
+        border: solid 2px blue;
+      }
+    </style>
+  </head>
+  <body>
+    <body>
+      <!-- 헤더 -->
+      <header>모아봐 시네마</header>
+
+      <!-- 메인창 -->
+      <form>
+        <div class="container">
+          <div class="card">카드템플릿</div>
+          <div class="board">방명록</div>
+        </div>
+      </form>
+
+      <!-- 바닥 -->
+      <footer>카페인캡틴 팀원 이름과 github 링크</footer>
+    </body>
+  </body>
 </html>
