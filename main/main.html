@@ -27,13 +27,41 @@
 
         padding: 20px;
 
-        grid-template-columns: 20% 1fr;
-        grid-template-rows: 50px 1fr;
+        grid-template-columns: 10% 20% 1fr;
+        grid-template-rows: 50px 1fr 200px;
         grid-gap: 20px;
+
+        grid-template-areas:
+          "none sort search"
+          "category main main";
       }
 
       .container > div {
         border: solid 2px blue;
+      }
+
+      .sort {
+        grid-area: sort;
+      }
+      .search {
+        grid-area: search;
+      }
+      .category {
+        grid-area: category;
+      }
+      .main {
+        grid-area: main;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+
+      .card {
+        margin: 20px;
+        width: 300px;
+        height: 400px;
+        border: solid 1px blue;
       }
     </style>
   </head>
@@ -46,12 +74,19 @@
       <div class="container">
         <div class="sort">정렬</div>
         <div class="search">
-            <input type="text"></input>
-            <button class="searchButton">검색버튼</buttonv>
+          <input type="text" />
+          <button class="searchButton">검색버튼</button>
         </div>
-        
+
         <div class="category">카테고리</div>
-        <div class="main">카드창</div>
+        <div class="main">
+          <div class="card">카드</div>
+          <div class="card">카드</div>
+          <div class="card">카드</div>
+          <div class="card">카드</div>
+          <div class="card">카드</div>
+          <div class="card">카드</div>
+        </div>
       </div>
     </form>
 
