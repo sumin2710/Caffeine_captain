@@ -22,7 +22,7 @@ fetch(url, options)
       console.log(response);
 
       let temp_html = `
-      <div class="card mb-3" id="card-${id}">
+      <div class="card mb-3" id="card-${id}" >
       <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
@@ -36,3 +36,8 @@ fetch(url, options)
       cardElement.innerHTML += temp_html;
     });
   });
+
+//배열번호를 띄우는 법,,,?
+//export로 배열번호를 담은 변수 생성
+//import 이용해 받은 배열번호로 상세페이지 만들기
+//배열번호 만드려면 card에 ol태그??
