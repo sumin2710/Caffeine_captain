@@ -192,30 +192,34 @@ nameSortBtn.addEventListener('click', (e) => {
 });
 
 
-
 // 제목순 정렬 시작
 function nameSort() {
   // 영화 제목 선택
-  const selector = element => element.querySelectorAll('h4');
-
+  const selectTitle = element => element.querySelectorAll('h4')[0].innerText;
+  
+  console.log(selectTitle());
   // card div 선택
-  const elements = [...document.querySelectorAll('.card')];
+  const cardArr = [...document.querySelectorAll('.card')];
 
   // 상위 부모 요소 선택
   const parentElement = document.querySelector('#movie-container');
 
-  elements.sort((elementA, elementB) => {
-    const textOfFirstElement = selector(elementA);
-    const textOfSecondElement = selector(elementB);
+  cardArr.sort((a, b) => {
+    const elementA = selectTitle(a);
+    const elementB = selectTitle(b);
+    if (elementA < elementB) {
+      return -1;
+    }
+    if (elementA > elementB) {
+      return 1;
+    }
+    // 이름 같을 때
+    return 0;
   })
   
-  .forEach(element => parentElement.appendChild(element));
+  // 여기에 카드 지우는 코드 넣기
+  parentElement.innerHTML = "";
 
-}
+  cardArr.forEach(element => parentElement.appendChild(element));
 
-// 어펜드차일드로 card 붙이기
-function sortAppend() {
-  const node = document.createElement('div');
-  node.querySelector('.card');
-  document.getElementById($movieContainer).appendChild(node);
 }
