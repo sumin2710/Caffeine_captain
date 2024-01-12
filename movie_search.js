@@ -177,3 +177,45 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   await initMovie();
 });
+
+
+
+
+
+// ============================================================
+// 정렬 구현 시작
+
+// 정렬 버튼 클릭 이벤트
+const nameSortBtn = document.querySelector('#name-sort-btn');
+nameSortBtn.addEventListener('click', (e) => {
+  nameSort();
+});
+
+
+
+// 제목순 정렬 시작
+function nameSort() {
+  // 영화 제목 선택
+  const selector = element => element.querySelectorAll('h4');
+
+  // card div 선택
+  const elements = [...document.querySelectorAll('.card')];
+
+  // 상위 부모 요소 선택
+  const parentElement = document.querySelector('#movie-container');
+
+  elements.sort((elementA, elementB) => {
+    const textOfFirstElement = selector(elementA);
+    const textOfSecondElement = selector(elementB);
+  })
+  
+  .forEach(element => parentElement.appendChild(element));
+
+}
+
+// 어펜드차일드로 card 붙이기
+function sortAppend() {
+  const node = document.createElement('div');
+  node.querySelector('.card');
+  document.getElementById($movieContainer).appendChild(node);
+}
