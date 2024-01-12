@@ -8,34 +8,39 @@ const options = {
   }
 };
 
-const searchParams = new URLSearchParams(window.location.search);
-const id = searchParams.get("id"); //"id"값만 받음 이제 이걸 fetch에서 찾기
+document.addEventListener("DOMContentLoaded", function () {
+  const searchParams = new URLSearchParams(window.location.search);
+  const cardID = searchParams.get("id");
 
-fetch(url, options)
-  .then((response) => response.json())
-  .then((response) => {
-    const rows = response["results"]; //여기서 id찾기
+  APIid(cardID);
+});
 
-    rows.forEach((data) => {
-      const title = data["title"];
-      const id = data["id"];
-      const overview = data["overview"];
-      const vote = data["vote_average"];
-      const path = data["poster_path"];
-      console.log(id);
+function APIid(cardID) {
+  fetch(url, options)
+    .then((response) => response.json())
+    .then((response) => {
+      const rows = response["results"];
+      const matchingData = rows.find((data) => data.id.toString() === cardID);
 
-      let temp_html = `
-      <div class="card mb-3" id="card-${id}"  onclick="moveDetail(event)">
-      <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">${title}</h5>
-        <p class="card-text">${overview}</p>
-        <p class="card-text"><small class="text-body-secondary">(${vote}/10)</small></p>
-      </div>
-    </div>`;
+      if (matchingData) {
+        const title = matchingData["title"];
+        const id = matchingData["id"];
+        const overview = matchingData["overview"];
+        const vote = matchingData["vote_average"];
+        const path = matchingData["poster_path"];
 
-      //1. 바닐라 JS로 api 연동, html 붙여넣기
-      let cardElement = document.getElementById("carD");
-      cardElement.innerHTML += temp_html;
+        let temp_html = `
+        <div class="card mb-3" id="card-${id}"  onclick="moveDetail(event)">
+        <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${title}</h5>
+          <p class="card-text">${overview}</p>
+          <p class="card-text"><small class="text-body-secondary">(${vote}/10)</small></p>
+        </div>
+      </div>`;
+
+        let cardElement = document.getElementById("carD");
+        cardElement.innerHTML += temp_html;
+      }
     });
-  });
+}
