@@ -22,7 +22,7 @@ footer {
   padding: 20px;
 
   grid-template-columns: 500px 1fr;
-  grid-template-rows: 600px 1fr;
+  grid-template-rows: 1fr 200px;
   grid-gap: 20px;
 
   grid-template-areas:
@@ -59,13 +59,17 @@ footer {
 
 .user {
   display: flex;
-  height: 20px;
-  justify-content: flex-end;
+  height: 30px;
+  justify-content: flex-start;
   column-gap: 5px;
 }
 
 .review {
-  width: 300px;
+  margin: 10px 0px 10px;
+  width: 600px;
   height: 150px;
   display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: row;
 }
