@@ -6,6 +6,9 @@ header {
   justify-content: center;
   font-size: 40px;
   font: bold;
+  color: white;
+
+  font-family: "Bagel Fat One", system-ui;
 }
 
 .searchInput {
@@ -18,6 +21,8 @@ footer {
   justify-content: flex-end;
   align-items: center;
   background-color: RGB(204, 10, 34);
+  font-weight: bold;
+  padding: 20px;
 }
 .container-fluid {
   display: grid;
