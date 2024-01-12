@@ -106,3 +106,7 @@ footer {
   color: brown;
   text-align: right;
 }
+
+.boardBar {
+  display: inline;
+}
