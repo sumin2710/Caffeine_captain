@@ -21,24 +21,29 @@ footer {
   background-color: beige;
   padding: 20px;
 
-  grid-template-columns: 500px 1fr;
+  grid-template-columns: 500px 1fr 400px;
   grid-template-rows: 1fr 200px;
   grid-gap: 20px;
 
   grid-template-areas:
-    "card board"
-    "card reviewBoard";
+    "card board board"
+    "card reviewBoard .";
 }
 
-.container-fluid > div {
+/* .container-fluid > div {
   border: solid 2px blue;
-}
+} */
 
 .cardGrid {
   grid-area: card;
 }
 .board {
+  width: 1300px;
   grid-area: board;
+  background-color: white;
+  border: solid 1px grey;
+
+  margin: 15px 10px 15px;
 }
 .reviewBoard {
   grid-area: reviewBoard;
@@ -66,10 +71,27 @@ footer {
 
 .review {
   margin: 10px 0px 10px;
-  width: 600px;
+  width: 1200px;
   height: 150px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: row;
+}
+
+.rtan {
+  position: absolute;
+  z-index: 1;
+  right: 6px;
+  bottom: -235px;
+}
+
+.boardBar {
+  width: 600px;
+  height: 30px;
+}
+
+.reviewBtn {
+  background-color: brown;
+  color: white;
 }
