@@ -14,7 +14,7 @@ footer {
   background-color: aqua;
 }
 
-.container {
+.container-fluid {
   display: grid;
   background-color: beige;
   padding: 20px;
@@ -28,11 +28,11 @@ footer {
     "card reviewBoard";
 }
 
-.container > div {
+.container-fluid > div {
   border: solid 2px blue;
 }
 
-.card {
+.cardGrid {
   grid-area: card;
 }
 .board {
@@ -46,13 +46,13 @@ footer {
   position: relative;
 }
 
-.carD {
+.card {
   position: absolute;
   z-index: 1;
   width: 330px;
-  height: 700px;
+  height: 560px;
   background-color: wheat;
-  margin: 140px 23px 80px;
+  margin: 115px 23px 80px;
 }
 
 .user {

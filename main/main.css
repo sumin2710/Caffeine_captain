@@ -13,22 +13,23 @@ footer {
   align-items: center;
   background-color: aqua;
 }
-.container {
+.container-fluid {
   display: grid;
   background-color: beige;
 
   padding: 20px;
 
   grid-template-columns: 10% 20% 1fr;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 50px 1fr 1fr;
   grid-gap: 20px;
 
   grid-template-areas:
-    "none sort search"
-    "category main main";
+    ". sort search"
+    "category main main"
+    ". main main";
 }
 
-.container > div {
+.container-fluid > div {
   border: solid 2px blue;
 }
 
@@ -46,16 +47,17 @@ footer {
 }
 .main {
   grid-area: main;
+  padding: 10px;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
-  padding: 10px;
+  justify-content: space-between;
+  row-gap: 30px;
 }
 
 .card {
   width: 300px;
-  height: 400px;
+  height: 600px;
   border: solid 1px blue;
   background-color: azure;
+  display: flex;
 }

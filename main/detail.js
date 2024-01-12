@@ -25,7 +25,7 @@ function APIid(cardID) {
       if (matchingData) {
         const title = matchingData["title"];
         const id = matchingData["id"];
-        const overview = matchingData["overview"];
+
         const vote = matchingData["vote_average"];
         const path = matchingData["poster_path"];
 
@@ -34,12 +34,12 @@ function APIid(cardID) {
         <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${title}</h5>
-          <p class="card-text">${overview}</p>
+         
           <p class="card-text"><small class="text-body-secondary">(${vote}/10)</small></p>
         </div>
       </div>`;
 
-        let cardElement = document.getElementById("carD");
+        let cardElement = document.getElementById("card");
         cardElement.innerHTML += temp_html;
       }
     });
