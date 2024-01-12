@@ -95,3 +95,14 @@ footer {
   background-color: brown;
   color: white;
 }
+
+.card-title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-text {
+  font-weight: bold;
+  color: brown;
+  text-align: right;
+}
