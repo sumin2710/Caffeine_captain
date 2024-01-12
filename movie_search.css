@@ -47,6 +47,29 @@ header > span {
   margin-top: 13px;
 }
 
+.sorting-container ul {
+  margin-right: 20px;
+  line-height: center;
+}
+
+.sorting-container ul li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.sorting-container ul li button {
+  text-decoration: none;
+  color: whitesmoke;
+  text-shadow: 3px 3px 5px aqua;
+  background: inherit; 
+  border:none; 
+  box-shadow:none; 
+  border-radius:0; 
+  padding:0; 
+  overflow:visible; 
+  cursor:pointer;
+}
+
 #movie-container {
   display: flex;
   justify-content: space-evenly center;
