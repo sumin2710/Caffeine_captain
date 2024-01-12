@@ -42,8 +42,6 @@ footer {
   grid-area: board;
   background-color: white;
   border: solid 1px grey;
-
-  margin: 15px 10px 15px;
 }
 .reviewBoard {
   grid-area: reviewBoard;
@@ -86,11 +84,6 @@ footer {
   bottom: -235px;
 }
 
-.boardBar {
-  width: 600px;
-  height: 30px;
-}
-
 .reviewBtn {
   background-color: brown;
   color: white;
@@ -107,6 +100,56 @@ footer {
   text-align: right;
 }
 
+.buttons {
+  display: flex;
+  width: 125px;
+  height: 30px;
+  gap: 5px;
+}
+
+.Barname {
+  width: 300px;
+  background-color: white;
+  text-align: center;
+  align-items: center;
+}
+
+.Barcontent {
+  width: 600px;
+  background-color: white;
+  text-align: center;
+  align-items: center;
+}
+
+.name {
+  width: 300px;
+  background-color: green;
+  text-align: center;
+  align-items: center;
+}
+
+.content {
+  width: 600px;
+  background-color: green;
+}
+
 .boardBar {
-  display: inline;
+  background-color: brown;
+  display: flex;
+  margin: 10px 10px;
+  padding: 5px;
+  gap: 10px;
+  width: 1275px;
+  height: 40px;
+}
+
+.contents {
+  padding: 5px;
+  margin: 10px 10px;
+  width: 1275px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
 }
