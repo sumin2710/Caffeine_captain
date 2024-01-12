@@ -22,7 +22,7 @@ fetch(url, options)
       console.log(response);
 
       let temp_html = `
-      <div class="card mb-3" id="card-${id}" >
+      <div class="card mb-3" id="card-${id}"  onclick="moveDetail(event)">
       <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
@@ -37,7 +37,21 @@ fetch(url, options)
     });
   });
 
-//배열번호를 띄우는 법,,,?
-//export로 배열번호를 담은 변수 생성
-//import 이용해 받은 배열번호로 상세페이지 만들기
-//배열번호 만드려면 card에 ol태그??
+//url parameter로 ID값을 전달
+//ID를 상세페이지로 전달
+//TMDB에서 그 ID를 찾아와서 뺴내기
+
+function moveDetail(event) {
+  let idd = event.currentTarget.id;
+  let idx = idd.split("-");
+  let id = idx[1];
+  location.href = `detail.html?id=${id}`;
+  //자바스크립트에서 사용되는 입력된 주소로 이동, href는 현재 페이지 정보를 갖고있음
+}
+
+// function moveDetail(id, title, overview, vote, path) {
+//   const queryParams = `?id=${id}&title=${encodeURIComponent(title)}&overview=${encodeURIComponent(
+//     overview
+//   )}&vote=${vote}&path=${encodeURIComponent(path)}`;
+//   location.href = `detail.html?card=${queryParams}`;
+// }

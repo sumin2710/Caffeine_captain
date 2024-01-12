@@ -1,4 +1,4 @@
-import config from "./apiKey.js";
+import config from "./main/asset/apiKey.js";
 
 // ============================================================ //
 // 전역 변수

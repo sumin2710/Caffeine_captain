@@ -19,15 +19,25 @@
     <!-- 메인창 -->
 
     <div class="container">
-      <div class="sort">정렬</div>
+      <select class="sort">
+        <option>평점순</option>
+        <option>제목순</option>
+      </select>
       <div class="search">
         <input type="text" />
         <button class="searchButton">검색</button>
       </div>
 
-      <div class="category">카테고리</div>
+      <div class="category">
+        <button>장르이름</button>
+        <button>장르이름</button>
+        <button>장르이름</button>
+        <button>장르이름</button>
+      </div>
       <div class="main">
-        <div id="card" class="card" onclick="location.href='detail.html'"></div>
+        <div id="card" class="card"></div>
+        <!-- 이벤트가 걸려있는 요소값이 나와야함.. -->
+        <!-- <div id="card" class="card" ></div> -->
         url에서 변수를 넘기는방법 우클릭했을때 url fetch다시불러오는건 하지말기!!!! => xxx. 서버 변경 유의하기, fetch도
         적게쓰는게 좋다(delay 최적화) html url에서 변수 넘기기??? 디테일에서 변수로 받아서..!
       </div>
@@ -35,5 +45,7 @@
 
     <!-- 바닥 -->
     <footer>카페인캡틴 팀원 이름과 github 링크</footer>
+    <script src="./main.js"></script>
+    <!-- 모듈이 문제인가/?? -->
   </body>
 </html>

@@ -8,20 +8,24 @@ const options = {
   }
 };
 
+const searchParams = new URLSearchParams(window.location.search);
+const id = searchParams.get("id"); //"id"값만 받음 이제 이걸 fetch에서 찾기
+
 fetch(url, options)
   .then((response) => response.json())
   .then((response) => {
-    const rows = response["results"][0]; //누른 번호값 알아내기
-    console.log(rows);
+    const rows = response["results"]; //여기서 id찾기
 
-    const title = rows["title"];
-    const id = rows["id"];
-    const overview = rows["overview"];
-    const vote = rows["vote_average"];
-    const path = rows["poster_path"];
+    rows.forEach((data) => {
+      const title = data["title"];
+      const id = data["id"];
+      const overview = data["overview"];
+      const vote = data["vote_average"];
+      const path = data["poster_path"];
+      console.log(id);
 
-    let temp_html = `
-      <div class="card mb-3" id="card-${id}" style="margin: 15px">
+      let temp_html = `
+      <div class="card mb-3" id="card-${id}"  onclick="moveDetail(event)">
       <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
@@ -30,7 +34,8 @@ fetch(url, options)
       </div>
     </div>`;
 
-    //1. 바닐라 JS로 api 연동, html 붙여넣기
-    let cardElement = document.getElementById("carD");
-    cardElement.innerHTML += temp_html;
+      //1. 바닐라 JS로 api 연동, html 붙여넣기
+      let cardElement = document.getElementById("carD");
+      cardElement.innerHTML += temp_html;
+    });
   });

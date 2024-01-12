@@ -3,7 +3,7 @@ header {
   background-color: red;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 footer {
@@ -13,11 +13,10 @@ footer {
   align-items: center;
   background-color: aqua;
 }
+
 .container {
   display: grid;
-
   background-color: beige;
-
   padding: 20px;
 
   grid-template-columns: 500px 1fr;
