@@ -30,8 +30,8 @@ function APIid(cardID) {
         const path = matchingData["poster_path"];
 
         let temp_html = `
-        <div class="card mb-3" id="card-${id}"  onclick="moveDetail(event)">
-        <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
+        <div class="card mb-3" id="card-${id}"  >
+        <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="..." onclick="moveDetail(event)">
         <div class="card-body">
           <h5 class="card-title">${title}</h5>
          

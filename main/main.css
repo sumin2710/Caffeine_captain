@@ -1,9 +1,15 @@
 header {
   height: 200px;
-  background-color: red;
+  background-color: RGB(204, 10, 34);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 40px;
+  font: bold;
+}
+
+.searchInput {
+  width: 400px;
 }
 
 footer {
@@ -11,7 +17,7 @@ footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: aqua;
+  background-color: RGB(204, 10, 34);
 }
 .container-fluid {
   display: grid;
@@ -29,21 +35,37 @@ footer {
     ". main main";
 }
 
-.container-fluid > div {
+/* .container-fluid > div {
   border: solid 2px blue;
-}
+} */
 
 .sort {
   grid-area: sort;
+  display: flex;
+  justify-content: flex-end;
+  background-color: brown;
+  border-radius: 17px;
+  color: white;
+  padding: 10px;
 }
+
 .search {
   grid-area: search;
   display: flex;
   justify-content: flex-end;
-  padding: 10px 0px 10px;
+  padding: 10px 10px;
+  column-gap: 5px;
+  background-color: brown;
+  border-radius: 17px;
+  color: white;
 }
 .category {
   grid-area: category;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  flex-direction: column;
+  row-gap: 10px;
 }
 .main {
   grid-area: main;
@@ -56,8 +78,31 @@ footer {
 
 .card {
   width: 300px;
-  height: 600px;
-  border: solid 1px blue;
+  height: 780px;
+  /* border: solid 1px blue; */
   background-color: azure;
   display: flex;
+}
+
+.category > button {
+  background-color: brown;
+  height: 70px;
+  color: white;
+  border-radius: 17px;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.card-text {
+  line-height: normal;
+}
+
+.text-body-secondary {
+  font-weight: bold;
+  color: brown;
+  position: absolute;
+  bottom: 13px;
+  right: 13px;
 }

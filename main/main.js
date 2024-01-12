@@ -21,12 +21,12 @@ fetch(url, options)
       const path = data["poster_path"];
 
       let temp_html = `
-      <div class="card mb-3" id="card-${id}"  onclick="moveDetail(event)">
-      <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
+      <div class="card mb-3"   >
+      <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="..." id="card-${id}" onclick="moveDetail(event)">
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
         <p class="card-text">${overview}</p>
-        <p class="card-text"><small class="text-body-secondary">(${vote}/10)</small></p>
+        <p class="text-body-secondary">(${vote}/10)</p>
       </div>
     </div>`;
 
