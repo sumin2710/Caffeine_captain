@@ -37,30 +37,6 @@ function APIid() {
     });
 }
 
-// 승원님이 짜신 코드(원래는 익명 함수였는데)를 함수로 옮겨보았어요
-// 리뷰 저장
-function saveReview(event) {
-  event.preventDefault();
-  const cardID = findCardIdFromUrl();
-  const userNickName = document.querySelector(".username");
-  const userPassWord = document.querySelector(".password");
-  const userReview = document.querySelector(".review");
-
-  let usersInfo = JSON.parse(localStorage.getItem(`movieId:${cardID}`)) || [];
-
-  let newUserInfo = {
-    nickname: userNickName.value,
-    passWord: userPassWord.value,
-    review: userReview.value,
-  };
-
-  usersInfo.push(newUserInfo);
-  localStorage.setItem(`movieId:${cardID}`, JSON.stringify(usersInfo));
-  alert("리뷰가 성공적으로 저장되었습니다.");
-  location.reload();
-  displayReviews();
-}
-
 // 다른 함수에서도 많이 사용할 것 같아서 따로 함수로 빼보았어요
 // 카드 아이디를 url에서 가져오는 함수
 function findCardIdFromUrl() {
@@ -132,17 +108,17 @@ const editReview = (event, idx) => {
   const reviewList = JSON.parse(localStorage.getItem(`movieId:${cardID}`));
   const review = reviewList[idx];
 
-  const password = prompt("Enter password.");
+  const password = prompt("비밀번호를 입력하세요.");
   if (password !== review.passWord) {
-    alert("Wrong password!!!");
+    alert("잘못된 비밀번호입니다!!!");
     return;
   } else {
-    const reviewContent = prompt("Edit your review~~", review.review);
+    const reviewContent = prompt("리뷰를 수정하세요~~", review.review);
     // 유효성 검사 -> 수정한 내용이 없거나 공백인지 검사
     if (reviewContent !== null && reviewContent.trim() !== "") {
       review.review = reviewContent; // update!
       localStorage.setItem(`movieId:${cardID}`, JSON.stringify(reviewList));
-      alert("Your review's been successfully edited.");
+      alert("리뷰가 성공적으로 수정되었습니다.");
       location.reload();
       displayReviews(); // 업데이트된 리뷰 리스트 보여주기
     } else {
@@ -158,14 +134,14 @@ const deleteReview = (event, idx) => {
   const reviewList = JSON.parse(localStorage.getItem(`movieId:${cardID}`));
   const review = reviewList[idx];
 
-  const password = prompt("Enter password.");
+  const password = prompt("비밀번호를 입력하세요.");
   if (password !== review.passWord) {
-    alert("Wrong password!!!");
+    alert("잘못된 비밀번호입니다!!!");
     return;
   } else {
     reviewList.splice(idx, 1); // idx부터 1개 요소 자르기
     localStorage.setItem(`movieId:${cardID}`, JSON.stringify(reviewList));
-    alert("Your review's been successfully deleted.");
+    alert("리뷰가 성공적으로 삭제되었습니다.");
     location.reload();
     displayReviews(); // 업데이트된 리뷰 리스트 보여주기
   }
@@ -174,7 +150,27 @@ const deleteReview = (event, idx) => {
 // DOM TREE가 로드되면, 할 작업들
 document.addEventListener("DOMContentLoaded", async function () {
   const userSubmit = document.querySelector(".reviewBtn");
-  userSubmit.addEventListener("click", saveReview); // 만약 submit 버튼을 클릭하면, 리뷰를 저장한다.
+  userSubmit.addEventListener("click", (event) => {
+    event.preventDefault();
+    const cardID = findCardIdFromUrl();
+    const userNickName = document.querySelector(".username");
+    const userPassWord = document.querySelector(".password");
+    const userReview = document.querySelector(".review");
+
+    let usersInfo = JSON.parse(localStorage.getItem(`movieId:${cardID}`)) || [];
+
+    let newUserInfo = {
+      nickname: userNickName.value,
+      passWord: userPassWord.value,
+      review: userReview.value,
+    };
+
+    usersInfo.push(newUserInfo);
+    localStorage.setItem(`movieId:${cardID}`, JSON.stringify(usersInfo));
+    alert("리뷰가 성공적으로 저장되었습니다.");
+    location.reload();
+    displayReviews();
+  });
 
   document.querySelector("header").addEventListener("click", () => {
     this.location.href = "../main/main.html";
