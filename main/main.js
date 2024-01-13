@@ -1,12 +1,6 @@
-const url = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTYzYjdjMWU5ZTIyZDAwM2ZjNjc5OWZlNjhmZWIxZCIsInN1YiI6IjY1OGViOWUxY2EwZTE3MDhmNGJhNzVkMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.h4S8wIqJ0DxjJ9506Hrj3F5AfsavVajdG9cVybz_RnM"
-  }
-};
+import options from "./apikey.js";
+const url =
+  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
 
 fetch(url, options)
   .then((response) => response.json())
@@ -21,9 +15,9 @@ fetch(url, options)
       const path = data["poster_path"];
 
       let temp_html = `
-      <div class="card mb-3" id="card-${id}">
-        <a href="./detail.html?id=${id}">
-      <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="..." id="card-${id}">
+      <div class="card mb-3">
+      <a href="../detail/detail.html?id=${id}">
+       <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
       </a>
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
@@ -31,26 +25,15 @@ fetch(url, options)
         <p class="text-body-secondary">(${vote}/10)</p>
       </div>
     </div>`;
-
-      // const card = document.createElement("div");
-      // card.className = "card";
-      // const mainContainer = document.getElementById("main");
-      // mainContainer.appendChild(card);
-
       let cardElement = document.getElementById("main");
       cardElement.innerHTML += temp_html;
     });
   });
 
-//물어보고싶은것
-//html안에서 카드를 생성하면 main 안으로 예쁘게 정렬이 됨.
-//그런데 js에서 innerHTML로 카드를 만들면 main 밖으로 튀어나옴
-//그래서 주석처리한것처럼 main 안에 div class를 만들어 카드를 생성하는식으로
-//하고싶으나 잘 안됨!!
-
+// onclick으로 했더니 moveDetail is not defined 에러가 나서 a 태그를 이미지 바깥에 감싸는 식으로 해결했습니다
 // function moveDetail(event) {
 //   let idd = event.currentTarget.id;
 //   let idx = idd.split("-");
 //   let id = idx[1];
-//   location.href = `detail.html?id=${id}`;
+//   location.href = `../detail/detail.html?id=${id}`;
 // }

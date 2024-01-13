@@ -1,12 +1,7 @@
-import options from "./apikey.js";
-const url = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+import options from "../main/apikey.js";
+const url =
+  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
 
-// 리뷰를 저장하고 새로고침하면 영화 정보를 가져오지 못하는 에러 해결:
-// 정확힌 영화 정보는 제대로 가져오고 있는데, cardID를 url에서 가져오지 못하고 있네요
-// cardID가 null이라서 null과 가져온 영화들의 id를 비교하면 당연히 matchingData가 없겠지요
-// 문제 : 리뷰를 저장하면 url에서 cardID 파라미터가 사라지고 있어요
-// event 받아와서 event.preventDefault()로 해결했습니당
-// 아이디를 가지고 TMDB에서 영화정보를 가져와 상세 페이지에 뿌려주는 함수
 function APIid() {
   let cardElement = document.getElementById("card");
   cardElement.innerHTML = ""; // 기존 내용 지우기
@@ -43,7 +38,7 @@ function APIid() {
 }
 
 // 승원님이 짜신 코드(원래는 익명 함수였는데)를 함수로 옮겨보았어요
-// 사용자 입력을 받아 리뷰를 생성하여 localStorage에 저장하는 함수
+// 리뷰 저장
 function saveReview(event) {
   event.preventDefault();
   const cardID = findCardIdFromUrl();
@@ -56,7 +51,7 @@ function saveReview(event) {
   let newUserInfo = {
     nickname: userNickName.value,
     passWord: userPassWord.value,
-    review: userReview.value
+    review: userReview.value,
   };
 
   usersInfo.push(newUserInfo);
@@ -130,7 +125,7 @@ const createReviewCard = (review, idx, container) => {
   container.appendChild(reviewCard);
 };
 
-// 수정 버튼을 누르면
+// 리뷰 수정
 const editReview = (event, idx) => {
   event.preventDefault();
   const cardID = findCardIdFromUrl();
@@ -156,7 +151,7 @@ const editReview = (event, idx) => {
   }
 };
 
-// 삭제
+// 리뷰 삭제
 const deleteReview = (event, idx) => {
   event.preventDefault();
   const cardID = findCardIdFromUrl();
@@ -176,10 +171,15 @@ const deleteReview = (event, idx) => {
   }
 };
 
-// DOM TREE가 로드되면, 할 작업들~~
+// DOM TREE가 로드되면, 할 작업들
 document.addEventListener("DOMContentLoaded", async function () {
   const userSubmit = document.querySelector(".reviewBtn");
   userSubmit.addEventListener("click", saveReview); // 만약 submit 버튼을 클릭하면, 리뷰를 저장한다.
-  APIid(); // 화면에 영화 정보 뿌려주고,
+
+  document.querySelector("header").addEventListener("click", () => {
+    this.location.href = "../main/main.html";
+  });
+
+  APIid(); // 영화 정보 보여주기
   displayReviews(); // 리뷰들 보여주기
 });
