@@ -12,14 +12,13 @@
     />
     <link rel="stylesheet" href="./asset/reset.css" />
     <link rel="stylesheet" href="./detail.css" />
-
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&family=Nanum+Myeongjo&display=swap");
     </style>
   </head>
 
   <body>
-    <script type="module" src="detail.js"></script>
+    <script type="module" src="./detail.js"></script>
     <!-- 헤더 -->
     <header onclick="location.href='main.html'">
       <h1>📽️모아봐 시네마</h1>
@@ -34,27 +33,12 @@
           <!-- 330x530 -->
         </div>
 
-        <div class="board">
-          <div class="boardBar">
-            <span class="Barname">닉네임</span>
-            <span class="Barcontent">내용</span>
-          </div>
-          <div class="contentBar">
-            <div class="contents">
-              <span class="name">닉네임자리</span>
-              <span class="content">내용들어갈자리</span>
-              <div class="buttons">
-                <button class="board">수정</button>
-                <button class="board">삭제</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="board"></div>
 
         <div class="reviewBoard">
           <div class="user">
             <input class="username" type="text" />
-            <input class="password" type="text" />
+            <input class="password" type="password" />
             <button class="reviewBtn">submit</button>
           </div>
 

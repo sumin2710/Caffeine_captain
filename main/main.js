@@ -21,8 +21,10 @@ fetch(url, options)
       const path = data["poster_path"];
 
       let temp_html = `
-      <div class="card mb-3"   >
-      <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="..." id="card-${id}" onclick="moveDetail(event)">
+      <div class="card mb-3" id="card-${id}">
+        <a href="./detail.html?id=${id}">
+      <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="..." id="card-${id}">
+      </a>
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
         <p class="card-text">${overview}</p>
@@ -46,9 +48,9 @@ fetch(url, options)
 //그래서 주석처리한것처럼 main 안에 div class를 만들어 카드를 생성하는식으로
 //하고싶으나 잘 안됨!!
 
-function moveDetail(event) {
-  let idd = event.currentTarget.id;
-  let idx = idd.split("-");
-  let id = idx[1];
-  location.href = `detail.html?id=${id}`;
-}
+// function moveDetail(event) {
+//   let idd = event.currentTarget.id;
+//   let idx = idd.split("-");
+//   let id = idx[1];
+//   location.href = `detail.html?id=${id}`;
+// }

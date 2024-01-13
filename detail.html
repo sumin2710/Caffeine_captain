@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>모여봐시네마 상세페이지</title>
+    <link rel="stylesheet" href="./asset/reset.css" />
+    <link rel="stylesheet" href="./detail.css" />
+  </head>
+
+  <body>
+    <script type="module" src="./detail.js"></script>
+    <!-- 헤더 -->
+    <header onclick="location.href='main.html'">
+      <h1>모아봐 시네마</h1>
+    </header>
+
+    <!-- 메인창 -->
+    <form>
+      <div class="container">
+        <div class="card">
+          <div class="carD" id="carD"></div>
+          <img class="movieTicket" src="./asset/movieTicket.png" alt="" />
+          <!-- 330x530 -->
+        </div>
+
+        <div class="board">
+          <div class="name">닉네임</div>
+        </div>
+
+        <form id="searchForm" class="name">
+            <input id="nickName" class="text" type="text" placeholder="닉네임" />
+            <input id="passWord" class="text" type="text" placeholder="비밀번호" />
+            <input id="submit" type="submit" value="제출" />
+            <textarea
+              id="review"
+              class="text"
+              placeholder="리뷰를 작성해주세요."
+              autofocus
+            ></textarea>
+        </div>
+      </div>
+    </form>
+
+    <!-- 바닥 -->
+    <footer>카페인캡틴 팀원 이름과 github 링크</footer>
+  </body>
+</html>
