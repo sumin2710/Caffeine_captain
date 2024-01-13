@@ -194,15 +194,27 @@ nameSortBtn.addEventListener('click', (e) => {
 
 // 제목순 정렬 시작
 function nameSort() {
-  // 영화 제목 선택
-  const selectTitle = element => element.querySelectorAll('h4')[0].innerText;
+
+  // 상위 부모 요소 선택
+  const $movieContainer = document.querySelector('#movie-container');
   
-  console.log(selectTitle());
+  // 영화 제목 선택
+  const selectTitle = element => {
+    const titleElements = element.querySelector('h4');
+    return titleElements.innerText; // titleElements에 저장된 영화 제목들을 innerText를 통해 반환
+    
+    // title이 입력되지 않은 card일 경우를 대비한 if문. 일단은 코드의 단순화를 위해 삭제
+    // if (titleElements.length > 0) { // titleElements에 h4 요소가 하나이상 있는지 확인
+    //   return titleElements[0].innerText; // titleElements에서 첫번째 영화 제목 반환
+    // } else {
+    //   return "제목이 없습니다"; // title이 없는 경우 반환
+    // }
+  };
+  
+
   // card div 선택
   const cardArr = [...document.querySelectorAll('.card')];
 
-  // 상위 부모 요소 선택
-  const parentElement = document.querySelector('#movie-container');
 
   cardArr.sort((a, b) => {
     const elementA = selectTitle(a);
@@ -217,9 +229,9 @@ function nameSort() {
     return 0;
   })
   
-  // 여기에 카드 지우는 코드 넣기
-  parentElement.innerHTML = "";
-
-  cardArr.forEach(element => parentElement.appendChild(element));
+  // 정렬 전 기존 카드 삭제
+  $movieContainer.innerHTML = "";
+  // card 정렬 후 해당 순서를 반영하여 $movieContainer에 다시 추가
+  cardArr.forEach(element => $movieContainer.appendChild(element));
 
 }
