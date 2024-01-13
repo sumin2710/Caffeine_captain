@@ -202,7 +202,7 @@ function nameSort() {
 
   // 영화 제목 선택
   const selectTitle = element => {
-    const titleElements = element.querySelector('h4');
+    const titleElements = element.querySelector('.title');
     return titleElements.innerText; // titleElements에 저장된 영화 제목들을 innerText를 통해 반환
     
     // title이 입력되지 않은 card일 경우를 대비한 if문. 일단은 코드의 단순화를 위해 삭제
@@ -281,31 +281,4 @@ function ratingSort() {
   $movieContainer.innerHTML = "";
   // card 정렬 후 해당 순서를 반영하여 $movieContainer에 다시 추가
   cardArr.forEach(element => $movieContainer.appendChild(element));
-}
-
-
-
-
-
-
-
-
-// ============================================================
-// 정렬 구현 시작
-// 인기순(기본상태)
-
-// 정렬 버튼 클릭 이벤트
-const popularSortBtn = document.querySelector('#popular-sort-btn');
-popularSortBtn.addEventListener('click', (e) => {
-  popularSort();
-});
-
-// 평점순 정렬 시작
-function popularSort() {
-
-  // 정렬 전 기존 카드 삭제
-  // $movieContainer.innerHTML = "";
-  // card 정렬 후 해당 순서를 반영하여 $movieContainer에 다시 추가
-  cardArr.forEach(element => $movieContainer.appendChild(element));
-
 }
