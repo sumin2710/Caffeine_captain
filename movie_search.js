@@ -185,6 +185,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 // ============================================================
 // 정렬 구현 시작
 
+// 상위 부모 요소 선택
+const $movieContainer = document.querySelector('#movie-container');
+
+// 제목순
+
 // 정렬 버튼 클릭 이벤트
 const nameSortBtn = document.querySelector('#name-sort-btn');
 nameSortBtn.addEventListener('click', (e) => {
@@ -195,9 +200,6 @@ nameSortBtn.addEventListener('click', (e) => {
 // 제목순 정렬 시작
 function nameSort() {
 
-  // 상위 부모 요소 선택
-  const $movieContainer = document.querySelector('#movie-container');
-  
   // 영화 제목 선택
   const selectTitle = element => {
     const titleElements = element.querySelector('h4');
@@ -231,6 +233,78 @@ function nameSort() {
   
   // 정렬 전 기존 카드 삭제
   $movieContainer.innerHTML = "";
+  // card 정렬 후 해당 순서를 반영하여 $movieContainer에 다시 추가
+  cardArr.forEach(element => $movieContainer.appendChild(element));
+
+}
+
+
+
+// ============================================================
+// 정렬 구현 시작
+// 평점순
+
+// 정렬 버튼 클릭 이벤트
+const ratingSortBtn = document.querySelector('#rating-sort-btn');
+ratingSortBtn.addEventListener('click', (e) => {
+  ratingSort();
+});
+
+// 평점순 정렬 시작
+function ratingSort() {
+
+  // 영화 평점 선택
+  const selectVote = element => {
+    const ratingElements = element.querySelector('.voteAvg');
+    return ratingElements.innerText;
+  };
+  
+
+  // card div 선택
+  const cardArr = [...document.querySelectorAll('.card')];
+
+
+  cardArr.sort((a, b) => {
+    const elementA = selectVote(a);
+    const elementB = selectVote(b);
+    if (elementA < elementB) {
+      return -1;
+    }
+    if (elementA > elementB) {
+      return 1;
+    }
+    // 이름 같을 때
+    return 0;
+  })
+  
+  // 정렬 전 기존 카드 삭제
+  $movieContainer.innerHTML = "";
+  // card 정렬 후 해당 순서를 반영하여 $movieContainer에 다시 추가
+  cardArr.forEach(element => $movieContainer.appendChild(element));
+}
+
+
+
+
+
+
+
+
+// ============================================================
+// 정렬 구현 시작
+// 인기순(기본상태)
+
+// 정렬 버튼 클릭 이벤트
+const popularSortBtn = document.querySelector('#popular-sort-btn');
+popularSortBtn.addEventListener('click', (e) => {
+  popularSort();
+});
+
+// 평점순 정렬 시작
+function popularSort() {
+
+  // 정렬 전 기존 카드 삭제
+  // $movieContainer.innerHTML = "";
   // card 정렬 후 해당 순서를 반영하여 $movieContainer에 다시 추가
   cardArr.forEach(element => $movieContainer.appendChild(element));
 
