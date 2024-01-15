@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
   // 카테고리에 해당하는 카드만 보여주기
-  getCategoryItmes();
+  getCategoryItems();
 
   // 정렬 옵션 클릭 이벤트
   // select option의 경우 click 이벤트가 아니라 change 이벤트
