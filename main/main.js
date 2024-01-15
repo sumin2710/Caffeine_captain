@@ -93,7 +93,7 @@ const displayCategoryItems = (movie_title_list) => {
 };
 
 // 검색 기능
-const searchMovie2 = () => {
+const searchMovie = () => {
   let $movieCards = document.querySelectorAll("#card");
   // querySelectorAll은 array가 아니라 nodeList를 반환한다.
   // 따라서 filter 메소드를 사용하기 위해선 array로 형변환 해줘야 한다.
@@ -186,11 +186,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   // 검색 버튼 클릭 이벤트
-  document.getElementById("search-btn").addEventListener("click", searchMovie2);
+  document.getElementById("search-btn").addEventListener("click", searchMovie);
   // 엔터를 눌러도 검색돼요
   document
     .getElementById("search-input")
     .addEventListener("keyup", function (event) {
-      if (event.key === "Enter") searchMovie2();
+      if (event.key === "Enter") searchMovie();
     });
 });
