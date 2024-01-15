@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // localStorage에 "genreId:32" : "[제목,제목,제목]" 이런식으로 저장되요
         const genre_ids = data["genre_ids"];
         console.log(genre_ids);
+
         genre_ids.forEach((genre_id) => {
           let existingValue =
             JSON.parse(localStorage.getItem(`genreId:${genre_id}`)) || [];
