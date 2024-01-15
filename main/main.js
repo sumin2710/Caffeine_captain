@@ -65,6 +65,7 @@ function ratingSort() {
   cardArr.forEach((element) => $movieContainer.appendChild(element));
 }
 
+// 카테고리 기능
 const getCategoryItems = () => {
   const $category = document.querySelector(".category");
   const $categoryList = $category.children;
@@ -91,6 +92,42 @@ const displayCategoryItems = (movie_title_list) => {
   });
 };
 
+// 검색 기능
+const searchMovie2 = () => {
+  let $movieCards = document.querySelectorAll("#card");
+  // querySelectorAll은 array가 아니라 nodeList를 반환한다.
+  // 따라서 filter 메소드를 사용하기 위해선 array로 형변환 해줘야 한다.
+  $movieCards = Array.prototype.slice.call($movieCards);
+  console.log($movieCards);
+  const $searchInput = document
+    .querySelector("#search-input")
+    .value.toLowerCase();
+  // display:flex인 것만 검색하고 싶다(display:none인건 검색하고 싶지 않다)
+  console.log($movieCards);
+  const $visibleCards = $movieCards.filter((card) => {
+    const displayStyle = window.getComputedStyle(card).display;
+    console.log(displayStyle);
+    return displayStyle != "none";
+  });
+  console.log($visibleCards);
+
+  // 빈 문자열이면,
+  if ($searchInput === "") {
+    alert("제목을 입력하지 않으셨습니다.");
+    return;
+  }
+
+  $visibleCards.forEach((card) => {
+    const title = card.querySelector(".card-title").textContent.toLowerCase();
+
+    if (title.includes($searchInput)) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+};
+
 // DOM TREE가 로드되면, 할 작업들
 document.addEventListener("DOMContentLoaded", async function () {
   fetch(url, options)
@@ -106,7 +143,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const path = data["poster_path"];
 
         //카테고리용으로 추가한 부분이에요
-        // localStorage에 "genreId:32" : "[제목,제목,제목]" 이런식으로 저장되요
+        // localStorage에 "genreId:32" : "[제목,제목,제목]" 이런식으로 저장돼요
         const genre_ids = data["genre_ids"];
         genre_ids.forEach((genre_id) => {
           let existingValue =
@@ -121,7 +158,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         let temp_html = `
       <div class="card mb-3" id="card">
       <a href="../detail/detail.html?id=${id}">
-       <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
+       <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="${title} Poster">
       </a>
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
@@ -147,4 +184,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       ratingSort();
     }
   });
+
+  // 검색 버튼 클릭 이벤트
+  document.getElementById("search-btn").addEventListener("click", searchMovie2);
+  // 엔터를 눌러도 검색돼요
+  document
+    .getElementById("search-input")
+    .addEventListener("keyup", function (event) {
+      if (event.key === "Enter") searchMovie2();
+    });
 });
