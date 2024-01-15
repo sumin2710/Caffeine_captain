@@ -157,6 +157,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     const userPassWord = document.querySelector(".password");
     const userReview = document.querySelector(".review");
 
+    // 유효성 검사 -> 입력 안했거나, 공백이거나
+    if (userNickName.value === null || userNickName.value.trim() === "") {
+      alert("유효하지 않은 이름입니다.");
+      return;
+    } else if (
+      userPassWord.value === null ||
+      userPassWord.value.trim() === ""
+    ) {
+      alert("유효하지 않은 비밀번호입니다.");
+      return;
+    } else if (userReview.value === null || userReview.value.trim() === "") {
+      alert("내용을 작성해주세요.");
+      return;
+    }
+
     let usersInfo = JSON.parse(localStorage.getItem(`movieId:${cardID}`)) || [];
 
     let newUserInfo = {

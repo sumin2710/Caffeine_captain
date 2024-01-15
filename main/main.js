@@ -81,15 +81,21 @@ const getCategoryItems = () => {
 };
 
 const displayCategoryItems = (movie_title_list) => {
+  let flag = false;
   const $cards = document.querySelectorAll("#card");
   $cards.forEach(($card) => {
     const title = $card.querySelector("div").querySelector("h5").innerText;
     if (movie_title_list.includes(title)) {
       $card.style.display = "flex";
+      flag = true;
     } else {
       $card.style.display = "none";
     }
   });
+  if (!flag) {
+    alert("해당 장르의 영화가 존재하지 않습니다.");
+    location.reload();
+  }
 };
 
 // 검색 기능
@@ -98,15 +104,15 @@ const searchMovie = () => {
   // querySelectorAll은 array가 아니라 nodeList를 반환한다.
   // 따라서 filter 메소드를 사용하기 위해선 array로 형변환 해줘야 한다.
   $movieCards = Array.prototype.slice.call($movieCards);
-  console.log($movieCards);
+
   const $searchInput = document
     .querySelector("#search-input")
     .value.toLowerCase();
   // display:flex인 것만 검색하고 싶다(display:none인건 검색하고 싶지 않다)
-  console.log($movieCards);
+
   const $visibleCards = $movieCards.filter((card) => {
     const displayStyle = window.getComputedStyle(card).display;
-    console.log(displayStyle);
+
     return displayStyle != "none";
   });
   console.log($visibleCards);
@@ -117,15 +123,21 @@ const searchMovie = () => {
     return;
   }
 
+  let flag = false;
   $visibleCards.forEach((card) => {
     const title = card.querySelector(".card-title").textContent.toLowerCase();
 
     if (title.includes($searchInput)) {
       card.style.display = "flex";
+      flag = true;
     } else {
       card.style.display = "none";
     }
   });
+  if (!flag) {
+    alert("검색 결과가 없습니다.");
+    location.reload();
+  }
 };
 
 // DOM TREE가 로드되면, 할 작업들
