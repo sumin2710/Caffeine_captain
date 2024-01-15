@@ -162,3 +162,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 });
+
+const headerReload = element.querySelector("header");
+headerReload.addEventListener("click", location.reload());
