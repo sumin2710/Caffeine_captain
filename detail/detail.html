@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>모여봐시네마 상세페이지</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../asset/reset.css" />
+    <link rel="stylesheet" href="./detail.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&family=Nanum+Myeongjo&display=swap");
+    </style>
+  </head>
+
+  <body>
+    <script type="module" src="./detail.js"></script>
+    <!-- 헤더 -->
+    <header>
+      <h1>📽️모아봐 시네마</h1>
+    </header>
+
+    <!-- 메인창 -->
+    <form>
+      <div class="container-fluid">
+        <div class="cardGrid">
+          <div id="card"></div>
+          <img class="movieTicket" src="../asset/movieTicket.png" alt="" />
+          <!-- 330x530 -->
+        </div>
+
+        <div class="board"></div>
+
+        <div class="reviewBoard">
+          <div class="user">
+            <input class="username" type="text" />
+            <input class="password" type="password" />
+            <button class="reviewBtn">submit</button>
+          </div>
+
+          <input class="review" type="text" />
+        </div>
+      </div>
+    </form>
+    <!-- 바닥 -->
+    <footer>
+      <img class="rtan" src="../asset/rtanmovie.png" alt="" />
+
+      copyright@Caffeine_captain
+    </footer>
+  </body>
+</html>
