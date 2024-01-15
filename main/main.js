@@ -2,52 +2,39 @@ import options from "./asset/apiKey.js";
 const url =
   "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
 
-fetch(url, options)
-  .then((response) => response.json())
-  .then((response) => {
-    const rows = response["results"];
+// 평점순 정렬 시작
+function ratingSort() {
+  // 상위 부모 요소 선택
+  const $movieContainer = document.querySelector("#main");
 
-    rows.forEach((data) => {
-      const title = data["title"];
-      const id = data["id"];
-      const overview = data["overview"];
-      const vote = data["vote_average"];
-      const path = data["poster_path"];
+  // 영화 평점 선택
+  const selectVote = (element) => {
+    const ratingElements = element
+      .querySelector("div")
+      .querySelector(".text-body-secondary");
+    return ratingElements.innerText;
+  };
 
-      let temp_html = `
-      <div class="card mb-3" id="card">
-      <a href="../detail/detail.html?id=${id}">
-       <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
-      </a>
-      <div class="card-body">
-        <h5 class="card-title">${title}</h5>
-        <p class="card-text">${overview}</p>
-        <p class="text-body-secondary">(${vote}/10)</p>
-      </div>
-    </div>`;
-      let cardElement = document.getElementById("main");
-      cardElement.innerHTML += temp_html;
-    });
+  // card div 선택
+  const cardArr = [...document.querySelectorAll(".card")];
+  cardArr.sort((a, b) => {
+    const elementA = selectVote(a);
+    const elementB = selectVote(b);
+    if (elementA < elementB) {
+      return 1;
+    }
+    if (elementA > elementB) {
+      return -1;
+    }
+    // 이름 같을 때
+    return 0;
   });
 
-// onclick으로 했더니 moveDetail is not defined 에러가 나서 a 태그를 이미지 바깥에 감싸는 식으로 해결했습니다
-// function moveDetail(event) {
-//   let idd = event.currentTarget.id;
-//   let idx = idd.split("-");
-//   let id = idx[1];
-//   location.href = `../detail/detail.html?id=${id}`;
-// }
-
-// 정렬 옵션 클릭 이벤트
-// select option의 경우 click 이벤트가 아니라 change 이벤트
-const $selectSort = document.querySelector(".sort");
-$selectSort.addEventListener("change", (e) => {
-  if (e.target.value === "제목순") {
-    nameSort();
-  } else if (e.target.value === "평점순") {
-    location.reload();
-  }
-});
+  // 정렬 전 기존 카드 삭제
+  $movieContainer.innerHTML = "";
+  // card 정렬 후 해당 순서를 반영하여 $movieContainer에 다시 추가
+  cardArr.forEach((element) => $movieContainer.appendChild(element));
+}
 
 // 제목순 정렬 시작
 function nameSort() {
@@ -89,3 +76,88 @@ function nameSort() {
   // card 정렬 후 해당 순서를 반영하여 $movieContainer에 다시 추가
   cardArr.forEach((element) => $movieContainer.appendChild(element));
 }
+
+const getCategoryItems = () => {
+  const $category = document.querySelector(".category");
+  const $categoryList = $category.children;
+
+  for (let i = 0; i < $categoryList.length; i++) {
+    $categoryList[i].addEventListener("click", () => {
+      const genre_id = $categoryList[i].className;
+      const movie_title_list =
+        JSON.parse(localStorage.getItem(`genreId:${genre_id}`)) || [];
+      displayCategoryItems(movie_title_list);
+    });
+  }
+};
+
+const displayCategoryItems = (movie_title_list) => {
+  const $cards = document.querySelectorAll("#card");
+  $cards.forEach(($card) => {
+    const title = $card.querySelector("div").querySelector("h5").innerText;
+    if (movie_title_list.includes(title)) {
+      $card.style.display = "block";
+    } else {
+      $card.style.display = "none";
+    }
+  });
+};
+
+// DOM TREE가 로드되면, 할 작업들
+document.addEventListener("DOMContentLoaded", async function () {
+  fetch(url, options)
+    .then((response) => response.json())
+    .then((response) => {
+      const rows = response["results"];
+
+      rows.forEach((data) => {
+        const title = data["title"];
+        const id = data["id"];
+        const overview = data["overview"];
+        const vote = data["vote_average"];
+        const path = data["poster_path"];
+
+        //카테고리용으로 추가한 부분이에요
+        // localStorage에 "genreId:32" : "[제목,제목,제목]" 이런식으로 저장되요
+        const genre_ids = data["genre_ids"];
+        console.log(genre_ids);
+        genre_ids.forEach((genre_id) => {
+          let existingValue =
+            JSON.parse(localStorage.getItem(`genreId:${genre_id}`)) || [];
+          existingValue.push(title);
+          localStorage.setItem(
+            `genreId:${genre_id}`,
+            JSON.stringify(existingValue)
+          );
+        });
+
+        let temp_html = `
+      <div class="card mb-3" id="card">
+      <a href="../detail/detail.html?id=${id}">
+       <img src="https://image.tmdb.org/t/p/w300${path}" class="card-img-top" alt="...">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">${title}</h5>
+        <p class="card-text">${overview}</p>
+        <p class="text-body-secondary">(${vote}/10)</p>
+      </div>
+    </div>`;
+        let cardElement = document.getElementById("main");
+        cardElement.innerHTML += temp_html;
+      });
+    });
+
+  // 카테고리에 해당하는 카드만 보여주기
+  getCategoryItems();
+
+  // 정렬 옵션 클릭 이벤트
+  // select option의 경우 click 이벤트가 아니라 change 이벤트
+  const $selectSort = document.querySelector(".sort");
+  $selectSort.addEventListener("change", (e) => {
+    if (e.target.value === "제목순") {
+      nameSort();
+    } else if (e.target.value === "평점순") {
+      ratingSort();
+    }
+  });
+});
